@@ -141,14 +141,21 @@ int main(int argc, char * argv[])
 		{
 			cI2cDisplay.Init();
 		}
-		if (argc > 3)
+		else if (argc > 3)
 		{
 			if ((string) "1" == argv[2]) bBackLight = true;
 			cI2cDisplay.SetBackLight(bBackLight);
 			char cPos = atoi(argv[1]) + 0x80;
 			cI2cDisplay.WriteString(cPos, argv[3]);
 		}
+		else
+		{
+		   cout << "usage: " << argv[0] << " i                (initialize display)\n";
+		   cout << "       " << argv[0] << " <pos> 0|1 <text> \n";
+		   cout << "version: 1.1 - wd, 20201129\n";
+		}
 	}
+
 	catch (string &sMessage)
 	{
 		cout << "I2C Display - " << sMessage << endl;
